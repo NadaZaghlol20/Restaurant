@@ -35,7 +35,7 @@
         </li>
 
         <li class="c-sidebar-nav-item">
-            <a href="#" class="c-sidebar-nav-link">
+            <a href="/clients" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>العملاء
             </a>
         </li>
@@ -49,12 +49,6 @@
         <li class="c-sidebar-nav-item">
             <a href="#" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>الطلبات
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/logout" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-sign-out-alt"></i>تسجيل خروج
             </a>
         </li>
     </ul>

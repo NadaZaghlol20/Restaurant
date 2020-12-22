@@ -19,3 +19,5 @@ Route::delete('monthly_subscription/destroy', 'WelcomeController@massDestroy')->
 // Route::get('/food_subscription','SubscriptionController');
 // Route::delete('food_subscription/destroy', 'SubscriptionController@massDestroy')->name('food_subscription.massDestroy');
 
+
+Route::get('/clients','ClientsController@index');
