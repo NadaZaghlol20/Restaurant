@@ -21,3 +21,4 @@ Route::delete('monthly_subscription/destroy', 'WelcomeController@massDestroy')->
 
 
 Route::get('/clients','ClientsController@index');
+Route::delete('clients/destroy', 'ClientsController@massDestroy')->name('clients.massDestroy');

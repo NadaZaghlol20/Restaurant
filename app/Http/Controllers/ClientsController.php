@@ -9,4 +9,7 @@ class ClientsController extends Controller
     public function index(){
         return view('clients.index');
     }
+    public function massDestroy(){
+        //return view('clients.index');
+    }
 }
