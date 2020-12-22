@@ -1,12 +1,9 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
     <div class="c-sidebar-brand d-md-down-none">
-        <h4>
-            @lang('dashboard.site_title')
-        </h4>
+        <h4>اطلب و اتمنى</h4>
     </div>
 
     <ul class="c-sidebar-nav mt-2">
-
         <li class="c-sidebar-nav-dropdown">
             <a class="c-sidebar-nav-dropdown-toggle" href="#">
                 <i class="fa-fw fas fa-tachometer-alt c-sidebar-nav-icon"></i>الاشتراكات

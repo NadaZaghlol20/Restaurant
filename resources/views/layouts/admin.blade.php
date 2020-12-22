@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ trans('dashboard.site_title') }}</title>
+    <title>اطلب واتمنى</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
@@ -38,26 +38,11 @@
                 <i class="fas fa-fw fa-bars"></i>
             </button>
 
-            <h4 class="c-header-brand d-lg-none" href="#">{{ trans('panel.site_title') }}</h4>
+            <h4 class="c-header-brand d-lg-none" href="#">اطلب واتمنى</h4>
 
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
             </button>
-
-            <ul class="c-header-nav ml-auto">
-                @if(count(config('panel.available_languages', [])) > 1)
-                    <li class="c-header-nav-item dropdown d-md-down-none">
-                        <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ strtoupper(app()->getLocale()) }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            @foreach(config('panel.available_languages') as $langLocale => $langName)
-                                <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
-                            @endforeach
-                        </div>
-                    </li>
-                @endif
-            </ul>
         </header>
         <div class="c-body">
             <main class="c-main">
@@ -157,26 +142,11 @@
           dt.rows({ search: 'applied' }).select();
         }
       },
+
       {
         extend: 'selectNone',
         className: 'btn-primary',
         text: selectNoneButtonTrans,
-        exportOptions: {
-          columns: ':visible'
-        }
-      },
-      /*{
-        extend: 'csv',
-        className: 'btn-default',
-        text: csvButtonTrans,
-        exportOptions: {
-          columns: ':hidden'
-        }
-      },*/
-      {
-        extend: 'excel',
-        className: 'btn-default',
-        text: excelButtonTrans,
         exportOptions: {
           columns: ':visible'
         }
@@ -189,14 +159,31 @@
           columns: ':visible'
         }
       },
+      /*{
+        extend: 'csv',
+        className: 'btn-default',
+        text: csvButtonTrans,
+        exportOptions: {
+          columns: ':hidden'
+        }
+      },
       {
+        extend: 'excel',
+        className: 'btn-default',
+        text: excelButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },*/
+
+      /*{
         extend: 'pdf',
         className: 'btn-default',
         text: pdfButtonTrans,
         exportOptions: {
           columns: ':visible'
         }
-      }
+      }*/
     ]
   });
 
