@@ -1,7 +1,13 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
-    <div class="c-sidebar-brand d-md-down-none">
-        <h4>اطلب و اتمنى</h4>
-    </div>
+     <a href="#" class="brand-link">
+        <div class="row justify-content-center my-2">
+            <img src="{{ asset('storage/male.png') }}" alt="Logo" class="rounded-circle img-responsive elevation-3"
+            style="opacity: 1;height:80px;">
+        </div>
+        <div class="row  justify-content-center">
+            <h4 class="brand-text" style="color:white;">أطلب و إتمنى</h4>
+        </div>
+    </a>
 
     <ul class="c-sidebar-nav mt-2">
         <li class="c-sidebar-nav-dropdown">
