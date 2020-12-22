@@ -7,4 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable=['client_id','restaurant_id','price'];
+
+    public function restaurants(){
+        return $this->hasMany('App\Models\Restaurant');
+    }
+
+    public function clients(){
+        return $this->hasMany('App\Models\Client');
+    }
+
+    public function delivery(){
+        return $this->belongsTo('App\Models\Delivery');
+    }
 }
