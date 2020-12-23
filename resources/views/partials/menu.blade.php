@@ -16,12 +16,12 @@
             </a>
             <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item">
-                    <a href="/monthly_sub" class="c-sidebar-nav-link {{ url()->current()==url('monthly_subscription') ? 'active' : '' }}">
+                    <a href="/monthly_sub" class="c-sidebar-nav-link {{ url()->current()==url('monthly_sub') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>الاشتراكات الشهرية
                     </a>
                 </li>
                 <li class="c-sidebar-nav-item">
-                    <a href="/food_sub" class="c-sidebar-nav-link {{ url()->current()==url('live_description')  ? 'active' : '' }}">
+                    <a href="/food_sub" class="c-sidebar-nav-link {{ url()->current()==url('food_sub')  ? 'active' : '' }}">
                         <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>اشتراكات العيش
                     </a>
                 </li>

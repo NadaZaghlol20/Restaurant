@@ -24,6 +24,7 @@
                             <th>الرقم التعريفى</th>
                             <th>إسم العميل</th>
                             <th>إسم المطعم</th>
+                            <th>إسم الدليفرى</th>
                             <th>السعر</th>
                             <th>تعديل</th>
                         </tr>
@@ -34,6 +35,7 @@
                                 <td height="5">{{ $order->id ?? '' }}</td>
                                 <td>{{ $order->name ?? '' }}</td>
                                 <td>{{ $order->res_name ?? '' }}</td>
+                                <td>{{ $order->delivery_name ?? '' }}</td>
                                 <td>{{ $order->price ?? '' }}</td>
                                 <td>
                                     <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($order) }}" style="color:white;cursor: pointer">
@@ -89,6 +91,17 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="delivery_id" id="delivery_id">
+                                        @foreach ($deliveries as $delivery)
+                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="price" class="col-md-4">السعر :</label>
                                 <div class="col-md-8">
                                     <input id="price" type="number" class="form-control" name="price" required>
@@ -135,6 +148,17 @@
                                     <select class="form-control" name="restaurant_id" id="restaurant_id1">
                                         @foreach ($restaurants as $res)
                                         <option value="{{$res->id}}">{{$res->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="delivery_id" id="delivery_id1">
+                                        @foreach ($deliveries as $delivery)
+                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -209,6 +233,7 @@
             console.log(operation)
             $('#client_id1').val(operation.client_id)
             $('#restaurant_id1').val(operation.restaurant_id)
+            $('#delivery_id1').val(operation.delivery_id)
             $('#price1').val(operation.price)
             $('#id').val(operation.id)
             $('#Editorder').modal('show');

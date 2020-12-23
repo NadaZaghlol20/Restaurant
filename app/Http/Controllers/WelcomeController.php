@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
     public function index(){
-        return view('subscriptions.monthly.monthly_subscription');
+        return redirect('/monthly_sub');
     }
 }
