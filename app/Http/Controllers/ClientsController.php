@@ -18,7 +18,7 @@ class ClientsController extends Controller
         $clients->phone=$request->phone;
         $clients->address=$request->address;
         $clients->save();
-        return back();
+        return back()->with('message','تم اضافة العميل بنجاح');
     }
 
     public function destroy($id){

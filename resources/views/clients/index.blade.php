@@ -3,7 +3,7 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#client">
-                {{ trans('global.add') }} عميل
+                اضافة عميل
             </a>
         </div>
     </div>
@@ -18,49 +18,25 @@
                 <table class=" table table-bordered table-striped table-hover datatable datatable-User">
                     <thead>
                         <tr>
-                            <th>
-                                الرقم التعريفى
-                            </th>
-                            <th>
-                                إسم العميل
-                            </th>
-                            <th>
-                                رقم العميل
-                            </th>
-                            <th>
-                                عنوان العميل
-                            </th>
-                            <th>
-                                تعديل
-                            </th>
+                            <th>الرقم التعريفى</th>
+                            <th>إسم العميل</th>
+                            <th>رقم العميل</th>
+                            <th>عنوان العميل</th>
+                            <th>تعديل</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($clients as $key => $client)
                             <tr data-entry-id="{{ $client->id }}">
+                                <td>{{ $client->id ?? '' }}</td>
+                                <td>{{ $client->name ?? '' }}</td>
+                                <td>{{ $client->phone ?? '' }}</td>
+                                <td>{{ $client->address ?? '' }}</td>
                                 <td>
-                                    {{ $client->id ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $client->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $client->phone ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $client->address ?? '' }}
-                                </td>
-                                <td>
-                                    {{-- <a class="btn btn-xs btn-info" href="{{ route('users.edit', $client->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a> --}}
-
                                     <form action="/clients_delete/{{$client->id}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        @method('delete') @csrf
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -84,44 +60,26 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4">إسم العميل :</label>
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4">رقم العميل :</label>
                                 <div class="col-md-8">
-                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone">
-                                    @error('phone')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="phone" type="text" class="form-control" name="phone" required autocomplete="phone">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="address" class="col-md-4">عنوان العميل :</label>
                                 <div class="col-md-8">
-                                    <textarea id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" cols="20" required autocomplete="address">
-                                    </textarea>
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <textarea id="address" type="text" class="form-control" name="address" cols="20" required autocomplete="address"></textarea>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">
-                                    تسجيل
-                                </button>
+                                <button type="submit" class="btn btn-primary">تسجيل</button>
                             </div>
                         </form>
                     </div>
