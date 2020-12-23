@@ -21,12 +21,21 @@ class ClientsController extends Controller
         return back();
     }
 
+    public function update(Request $request,$id){
+        $clients=Client::where('id',$id)->find($id);
+        $clients->name=$request->name;
+        $clients->phone=$request->phone;
+        $clients->address=$request->address;
+        $clients->save();
+        return back();
+    }
+
     public function destroy($id){
         $client=Client::where('id',$id)->delete();
         return back();
     }
 
-    public function massDestroy(MassDestroyClientRequest $request){
+    public function massDestroy(){
         Client::whereIn('id', request('ids'))->delete();
         return response(null, 204);
     }
