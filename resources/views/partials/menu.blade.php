@@ -29,8 +29,14 @@
         </li>
 
         <li class="c-sidebar-nav-item">
-            <a href="#" class="c-sidebar-nav-link">
+            <a href="/restaurants" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المطاعم
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/menus" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>قائمة الطعام
             </a>
         </li>
 
