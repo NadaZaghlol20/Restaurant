@@ -33,9 +33,13 @@
                                 <td>{{ $client->phone ?? '' }}</td>
                                 <td>{{ $client->address ?? '' }}</td>
                                 <td>
-                                    <form action="/clients_delete/{{$client->id}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($client) }}" style="color:white;cursor: pointer">
+                                        تعديل
+                                    </a>
+
+                                    <form action="/clients_delete/{{ $client->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         @method('delete') @csrf
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="حذف">
                                     </form>
                                 </td>
                             </tr>
@@ -45,6 +49,7 @@
             </div>
         </div>
 
+        <!--Create Modal-->
         <div class="modal fade" id="client" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
@@ -87,8 +92,50 @@
             </div>
         </div>
 
-    @endsection
+        <!--Edit Modal-->
+        <div class="modal fade" id="Editclient" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="modal-dialog mt-5" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="clientModal"> تسجيل بيانات العميل</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('update_client') }}">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4">إسم العميل :</label>
+                                <div class="col-md-8">
+                                    <input id="name1" type="text" class="form-control" name="name" required>
+                                </div>
+                            </div>
 
+                            <div class="form-group row">
+                                <label for="phone" class="col-md-4">رقم العميل :</label>
+                                <div class="col-md-8">
+                                    <input id="phone1" type="text" class="form-control" name="phone" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="address" class="col-md-4">عنوان العميل :</label>
+                                <div class="col-md-8">
+                                    <input id="address1" type="text" class="form-control" name="address" required>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="hidden" name="id" id="id" value="" >
+                                <button type="submit" class="btn btn-primary">تعديل</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection
 @section('scripts')
 @parent
 <script>
@@ -130,6 +177,17 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $($.fn.dataTable.tables(true)).DataTable()
                 .columns.adjust();
+        });
+
+        $('.edit-operations-button').click(function(e){
+            e.preventDefault()
+            let operation = JSON.parse($(this).attr('data-recObject'))
+            console.log(operation)
+            $('#name1').val(operation.name)
+            $('#phone1').val(operation.phone)
+            $('#address1').val(operation.address)
+            $('#id').val(operation.id)
+            $('#Editclient').modal('show');
         });
     })
 </script>
