@@ -17,9 +17,7 @@ class CreateDeliveriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->unsignedBigInteger('oreder_id');
             $table->integer('delivery_price');
-            $table->foreign('oreder_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }

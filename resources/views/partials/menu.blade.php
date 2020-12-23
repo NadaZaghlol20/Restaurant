@@ -16,12 +16,12 @@
             </a>
             <ul class="c-sidebar-nav-dropdown-items">
                 <li class="c-sidebar-nav-item">
-                    <a href="{{route('monthly_subscription.index')}}" class="c-sidebar-nav-link {{ url()->current()==url('monthly_subscription') ? 'active' : '' }}">
+                    <a href="/monthly_sub" class="c-sidebar-nav-link {{ url()->current()==url('monthly_subscription') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>الاشتراكات الشهرية
                     </a>
                 </li>
                 <li class="c-sidebar-nav-item">
-                    <a href="live_description" class="c-sidebar-nav-link {{ url()->current()==url('live_description')  ? 'active' : '' }}">
+                    <a href="/food_sub" class="c-sidebar-nav-link {{ url()->current()==url('live_description')  ? 'active' : '' }}">
                         <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>اشتراكات العيش
                     </a>
                 </li>
@@ -41,7 +41,7 @@
         </li>
 
         <li class="c-sidebar-nav-item">
-            <a href="#" class="c-sidebar-nav-link">
+            <a href="/deliveries" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>دليفرى
             </a>
         </li>

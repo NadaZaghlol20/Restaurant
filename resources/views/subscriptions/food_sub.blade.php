@@ -3,15 +3,13 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#client">
-                اضافة دليفرى
+                اضافة اشتراك عيش
             </a>
         </div>
     </div>
 
     <div class="card">
-        <div class="card-header">
-           قائمة الدليفرى
-        </div>
+        <div class="card-header">قائمة اشتراكات العيش</div>
 
         <div class="card-body">
             <div class="table-responsive">
@@ -19,24 +17,24 @@
                     <thead>
                         <tr>
                             <th>الرقم التعريفى</th>
-                            <th>إسم الدليفرى</th>
-                            <th>رقم الدليفرى</th>
-                            <th>سعر التوصيل</th>
+                            <th>عنوان الفرن</th>
+                            <th>عدد الارغفة</th>
+                            <th>السعر</th>
                             <th>تعديل</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($deliveries as $delivery)
-                            <tr data-entry-id="{{ $delivery->id }}">
-                                <td>{{ $delivery->id ?? '' }}</td>
-                                <td>{{ $delivery->name ?? '' }}</td>
-                                <td>{{ $delivery->phone ?? '' }}</td>
-                                <td>{{ $delivery->delivery_price ?? '' }}</td>
+                        @foreach($food_subs as $food_sub)
+                            <tr data-entry-id="{{ $food_sub->id }}">
+                                <td>{{ $food_sub->id ?? '' }}</td>
+                                <td>{{ $food_sub->address ?? '' }}</td>
+                                <td>{{ $food_sub->bread_num ?? '' }}</td>
+                                <td>{{ $food_sub->price ?? '' }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($delivery) }}" style="color:white;cursor: pointer">
+                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($food_sub) }}" style="color:white;cursor: pointer">
                                         تعديل
                                     </a>
-                                    <form action="/deliveries_delete/{{ $delivery->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="/food_sub_delete/{{ $food_sub->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         @method('delete') @csrf
                                         <input type="submit" class="btn btn-xs btn-danger" value="حذف">
                                     </form>
@@ -53,32 +51,32 @@
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="clientModal"> تسجيل بيانات الدليفرى</h5>
+                        <h5 class="modal-title" id="clientModal">تسجيل اشتراك العيش</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/deliveries_create">
+                        <form method="POST" action="/food_sub_create">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم الدليفرى :</label>
+                                <label for="address" class="col-md-4">عنوان الفرن :</label>
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
+                                    <textarea id="address" type="text" class="form-control" name="address" cols="20" required autocomplete="address"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم الدليفرى :</label>
+                                <label for="phone" class="col-md-4">عدد الارغفة :</label>
                                 <div class="col-md-8">
-                                    <input id="phone" type="text" class="form-control" name="phone" required autocomplete="phone">
+                                    <input id="bread_num" type="number" class="form-control" name="bread_num" required autocomplete="bread_num">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone" class="col-md-4"> سعر التوصيل :</label>
+                                <label for="phone" class="col-md-4"> سعر العيش :</label>
                                 <div class="col-md-8">
-                                    <input id="delivery_price" type="number" class="form-control" name="delivery_price" required autocomplete="delivery_price">
+                                    <input id="price" type="number" class="form-control" name="price" required autocomplete="type">
                                 </div>
                             </div>
 
@@ -96,32 +94,32 @@
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="clientModal">تعديل بيانات الدليفرى</h5>
+                        <h5 class="modal-title" id="clientModal">تعديل بيانات العيش</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('update_delivery') }}">
+                        <form method="POST" action="{{ route('update_food_sub') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم الدليفرى :</label>
+                                <label for="address" class="col-md-4">عنوان الفرن :</label>
                                 <div class="col-md-8">
-                                    <input id="name1" type="text" class="form-control" name="name" required>
+                                    <textarea id="address1" type="text" class="form-control" name="address" cols="20" required autocomplete="address"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم الدليفرى :</label>
+                                <label for="phone" class="col-md-4">عدد الارغفة :</label>
                                 <div class="col-md-8">
-                                    <input id="phone1" type="text" class="form-control" name="phone" required>
+                                    <input id="bread_num1" type="number" class="form-control" name="bread_num" required autocomplete="bread_num">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="delivery_price1" class="col-md-4"> سعر التوصيل :</label>
+                                <label for="phone" class="col-md-4"> سعر العيش :</label>
                                 <div class="col-md-8">
-                                    <input id="delivery_price1" type="number" class="form-control" name="delivery_price" required autocomplete="delivery_price">
+                                    <input id="price1" type="number" class="form-control" name="price" required autocomplete="price">
                                 </div>
                             </div>
 
@@ -143,7 +141,7 @@
         let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('deliveries.massDestroy') }}",
+            url: "{{ route('food_subs.massDestroy') }}",
             className: 'btn-danger',
             action: function (e, dt, node, config) {
                 var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -180,9 +178,9 @@
         $('.edit-operations-button').click(function(e){
             e.preventDefault()
             let operation = JSON.parse($(this).attr('data-recObject'))
-            $('#name1').val(operation.name)
-            $('#phone1').val(operation.phone)
-            $('#delivery_price1').val(operation.delivery_price)
+            $('#address1').val(operation.address)
+            $('#bread_num1').val(operation.bread_num)
+            $('#price1').val(operation.price)
             $('#id').val(operation.id)
             $('#Editclient').modal('show');
         });

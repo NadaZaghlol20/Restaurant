@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable=['client_id','restaurant_id','price'];
+    protected $fillable=['client_id','restaurant_id','delivery_id','price'];
 
     public function restaurants(){
         return $this->hasMany('App\Models\Restaurant');

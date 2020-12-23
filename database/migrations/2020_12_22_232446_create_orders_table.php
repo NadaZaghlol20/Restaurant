@@ -17,10 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('restaurant_id');
+            $table->unsignedBigInteger('delivery_id');
             $table->integer('price');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
-
+            $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
             $table->timestamps();
         });
     }
