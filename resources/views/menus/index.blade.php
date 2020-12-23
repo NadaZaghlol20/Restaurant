@@ -2,15 +2,15 @@
 @section('content')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#client">
-                اضافة عميل
+            <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#menu">
+                اضافة قائمة الطعام
             </a>
         </div>
     </div>
 
     <div class="card">
         <div class="card-header">
-           قائمة العملاء
+           قائمة قوائم الطعام
         </div>
 
         <div class="card-body">
@@ -19,25 +19,25 @@
                     <thead>
                         <tr>
                             <th>الرقم التعريفى</th>
-                            <th>إسم العميل</th>
-                            <th>رقم العميل</th>
-                            <th>عنوان العميل</th>
+                            <th>إسم المطعم</th>
+                            <th>نوع الطعام</th>
+                            <th>السعر</th>
                             <th>تعديل</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($clients as $key => $client)
-                            <tr data-entry-id="{{ $client->id }}">
-                                <td>{{ $client->id ?? '' }}</td>
-                                <td>{{ $client->name ?? '' }}</td>
-                                <td>{{ $client->phone ?? '' }}</td>
-                                <td>{{ $client->address ?? '' }}</td>
+                        @foreach($menus as $menu)
+                            <tr data-entry-id="{{ $menu->id }}">
+                                <td>{{ $menu->id ?? '' }}</td>
+                                <td>{{ $menu->name ?? '' }}</td>
+                                <td>{{ $menu->food ?? '' }}</td>
+                                <td>{{ $menu->price ?? '' }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($client) }}" style="color:white;cursor: pointer">
+                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($menu) }}" style="color:white;cursor: pointer">
                                         تعديل
                                     </a>
 
-                                    <form action="/clients_delete/{{ $client->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="/menus_delete/{{ $menu->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         @method('delete') @csrf
                                         <input type="submit" class="btn btn-xs btn-danger" value="حذف">
                                     </form>
@@ -49,37 +49,42 @@
             </div>
         </div>
 
-        <!--Create Modal-->
-        <div class="modal fade" id="client" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+        <!--Create Modal Menu-->
+        <div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="menuModal" aria-hidden="true">
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="clientModal"> تسجيل بيانات العميل</h5>
+                        <h5 class="modal-title" id="menuModal"> تسجيل بيانات قائمة الطعام
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/clients_create">
+                        <form method="POST" action="/menus_create">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم العميل :</label>
+                                <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
+                                    <select class="form-control" name="restaurant_id" id="restaurant_id">
+                                        @foreach ($restaurants as $res)
+                                        <option value="{{$res->id}}">{{$res->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم العميل :</label>
+                                <label for="food" class="col-md-4">اسم الطعام :</label>
                                 <div class="col-md-8">
-                                    <input id="phone" type="text" class="form-control" name="phone" required autocomplete="phone">
+                                    <input id="food" type="text" class="form-control" name="food" required autocomplete="food">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="address" class="col-md-4">عنوان العميل :</label>
+                                <label for="price" class="col-md-4">السعر :</label>
                                 <div class="col-md-8">
-                                    <textarea id="address" type="text" class="form-control" name="address" cols="20" required autocomplete="address"></textarea>
+                                    <input id="price" type="number" class="form-control" name="price" required>
                                 </div>
                             </div>
 
@@ -92,42 +97,46 @@
             </div>
         </div>
 
-        <!--Edit Modal-->
-        <div class="modal fade" id="Editclient" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+        <!--Edit Modal Menu-->
+        <div class="modal fade" id="Editmenu" tabindex="-1" role="dialog" aria-labelledby="menuModal" aria-hidden="true">
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="clientModal"> تعديل بيانات العميل</h5>
+                        <h5 class="modal-title" id="menuModal"> تعديل بيانات قائمة الطعام
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('update_client') }}">
+                        <form method="POST" action="{{ route('update_menu') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم العميل :</label>
+                                <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
                                 <div class="col-md-8">
-                                    <input id="name1" type="text" class="form-control" name="name" required>
+                                    <select class="form-control" name="restaurant_id" id="restaurant_id1">
+                                        @foreach ($restaurants as $res)
+                                            <option value="{{$res->id}}">{{$res->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم العميل :</label>
+                                <label for="food" class="col-md-4">اسم الطعام :</label>
                                 <div class="col-md-8">
-                                    <input id="phone1" type="text" class="form-control" name="phone" required>
+                                    <input id="food1" type="text" class="form-control" name="food" required autocomplete="food">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="address" class="col-md-4">عنوان العميل :</label>
+                                <label for="price" class="col-md-4">السعر :</label>
                                 <div class="col-md-8">
-                                    <input id="address1" type="text" class="form-control" name="address" required>
+                                    <input id="price1" type="number" class="form-control" name="price" required>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <input type="hidden" name="id" id="id" value="" >
                                 <button type="submit" class="btn btn-primary">تعديل</button>
                             </div>
                         </form>
@@ -135,7 +144,9 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
+
 @section('scripts')
 @parent
 <script>
@@ -144,7 +155,7 @@
         let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('clients.massDestroy') }}",
+            url: "{{ route('restaurants.massDestroy') }}",
             className: 'btn-danger',
             action: function (e, dt, node, config) {
                 var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -183,11 +194,11 @@
             e.preventDefault()
             let operation = JSON.parse($(this).attr('data-recObject'))
             console.log(operation)
-            $('#name1').val(operation.name)
-            $('#phone1').val(operation.phone)
-            $('#address1').val(operation.address)
+            $('#restaurant_id1').val(operation.restaurant_id)
+            $('#food1').val(operation.food)
+            $('#price1').val(operation.price)
             $('#id').val(operation.id)
-            $('#Editclient').modal('show');
+            $('#Editmenu').modal('show');
         });
     })
 </script>
