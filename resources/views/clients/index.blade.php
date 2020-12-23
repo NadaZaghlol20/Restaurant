@@ -18,54 +18,44 @@
                 <table class=" table table-bordered table-striped table-hover datatable datatable-User">
                     <thead>
                         <tr>
-                            <th width="10">
-
+                            <th>
+                                الرقم التعريفى
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.id') }}
+                                إسم العميل
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.name') }}
+                                رقم العميل
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.email') }}
+                                عنوان العميل
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.email_verified_at') }}
-                            </th>
-                            <th>
-                                &nbsp;
+                                تعديل
                             </th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach($users as $key => $user)
-                            <tr data-entry-id="{{ $user->id }}">
+                    <tbody>
+                        @foreach($clients as $key => $client)
+                            <tr data-entry-id="{{ $client->id }}">
                                 <td>
-
+                                    {{ $client->id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $user->id ?? '' }}
+                                    {{ $client->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $user->name ?? '' }}
+                                    {{ $client->phone ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $user->email ?? '' }}
+                                    {{ $client->address ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $user->email_verified_at ?? '' }}
-                                </td>
-                                <td>
-                                    <a class="btn btn-xs btn-primary" href="{{ route('users.show', $user->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-
-                                    <a class="btn btn-xs btn-info" href="{{ route('users.edit', $user->id) }}">
+                                    {{-- <a class="btn btn-xs btn-info" href="{{ route('users.edit', $client->id) }}">
                                         {{ trans('global.edit') }}
-                                    </a>
+                                    </a> --}}
 
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="/clients_delete/{{$client->id}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -74,7 +64,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -89,7 +79,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" action="/clients_create">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4">إسم العميل :</label>
