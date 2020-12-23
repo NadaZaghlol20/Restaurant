@@ -5,6 +5,9 @@
             <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#menu">
                 اضافة قائمة الطعام
             </a>
+            <button class="btn btn-info" style="color:white;cursor: pointer" onClick="print()">
+                طباعة
+            </button>
         </div>
     </div>
 
@@ -89,7 +92,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">تسجيل</button>
+                                <button type="submit" class="btn btn-primary" onclick="print()">تسجيل</button>
                             </div>
                         </form>
                     </div>
@@ -156,7 +159,7 @@
         let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('restaurants.massDestroy') }}",
+            url: "{{ route('menus.massDestroy') }}",
             className: 'btn-danger',
             action: function (e, dt, node, config) {
                 var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {

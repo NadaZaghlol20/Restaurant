@@ -11,7 +11,6 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" />
-    {{-- <link href="{{ asset('css/all.css') }}" rel="stylesheet" /> --}}
     <link href="{{ asset('css/jquery_datatable.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap_datatable.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/buttons_datatable.min.css') }}" rel="stylesheet" />
@@ -142,14 +141,15 @@
                         columns: ':visible'
                     }
                 },
-                {
-                    extend: 'print',
-                    className: 'btn-default',
-                    text: printButtonTrans,
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }]
+                // {
+                //     extend: 'print',
+                //     className: 'btn-default',
+                //     text: printButtonTrans,
+                //     exportOptions: {
+                //         columns: ':visible'
+                //     }
+                // }
+                ]
             });
 
             $.fn.dataTable.ext.classes.sPageButton = '';

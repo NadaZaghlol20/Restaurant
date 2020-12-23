@@ -57,3 +57,10 @@ Route::post('/menus_create','MenusController@create');
 Route::post('/menus_update','MenusController@update')->name('update_menu');
 Route::delete('/menus_delete/{id}','MenusController@destroy');
 Route::delete('menus/destroy', 'MenusController@massDestroy')->name('menus.massDestroy');
+
+//Orders Routes
+Route::get('/orders','OrdersController@index');
+Route::post('/orders_create','OrdersController@create');
+Route::post('/orders_update','OrdersController@update')->name('update_order');
+Route::delete('/orders_delete/{id}','OrdersController@destroy');
+Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
