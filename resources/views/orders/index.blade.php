@@ -23,6 +23,7 @@
                         <tr>
                             <th>الرقم التعريفى</th>
                             <th>إسم العميل</th>
+                            <th>رقم العميل</th>
                             <th>إسم المطعم</th>
                             <th>إسم الدليفرى</th>
                             <th>السعر</th>
@@ -34,6 +35,7 @@
                             <tr data-entry-id="{{ $order->id }}">
                                 <td height="5">{{ $order->id ?? '' }}</td>
                                 <td>{{ $order->name ?? '' }}</td>
+                                <td>{{ $order->phone ?? '' }}</td>
                                 <td>{{ $order->res_name ?? '' }}</td>
                                 <td>{{ $order->delivery_name ?? '' }}</td>
                                 <td>{{ $order->price ?? '' }}</td>
@@ -73,7 +75,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control" name="client_id" id="client_id">
                                         @foreach ($clients as $client)
-                                        <option value="{{$client->id}}">{{$client->name}}</option>
+                                            <option value="{{$client->id}}">{{$client->name}} &nbsp; {{ $client->phone }}</option>
                                         @endforeach
                                     </select>
                                 </div>

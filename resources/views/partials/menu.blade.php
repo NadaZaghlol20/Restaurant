@@ -10,6 +10,36 @@
     </a>
 
     <ul class="c-sidebar-nav mt-2">
+        <li class="c-sidebar-nav-item">
+            <a href="/orders" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>الطلبات
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/restaurants" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المطاعم
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/menus" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>قائمة الطعام
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/deliveries" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>دليفرى
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/clients" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>العملاء
+            </a>
+        </li>
+
         <li class="c-sidebar-nav-dropdown">
             <a class="c-sidebar-nav-dropdown-toggle" href="#">
                 <i class="fa-fw fas fa-tachometer-alt c-sidebar-nav-icon"></i>الاشتراكات
@@ -26,36 +56,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/restaurants" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المطاعم
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/menus" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>قائمة الطعام
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/clients" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>العملاء
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/deliveries" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>دليفرى
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
-            <a href="/orders" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>الطلبات
-            </a>
         </li>
     </ul>
 </div>

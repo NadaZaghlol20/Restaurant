@@ -19,7 +19,7 @@ class OrdersController extends Controller
         ->join('clients','clients.id','=','orders.client_id')
         ->join('restaurants','restaurants.id','=','orders.restaurant_id')
         ->join('deliveries','deliveries.id','=','orders.delivery_id')
-        ->select('orders.*','restaurants.name as res_name','deliveries.name as delivery_name','clients.name')
+        ->select('orders.*','restaurants.name as res_name','deliveries.name as delivery_name','clients.name','clients.phone')
         ->get();
 
         return view('orders.index',compact('orders','restaurants','clients','deliveries'));
