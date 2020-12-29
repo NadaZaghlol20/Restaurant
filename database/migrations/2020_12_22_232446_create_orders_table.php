@@ -18,7 +18,12 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('delivery_id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('food');
             $table->integer('price');
+            $table->string('restaurant');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
             $table->foreign('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');

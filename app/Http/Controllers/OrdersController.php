@@ -7,11 +7,14 @@ use App\Models\Client;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Restaurant;
+use App\Models\Menu;
 use DB;
+use DataTables;
 
 class OrdersController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+
         $clients=Client::all();
         $restaurants=Restaurant::all();
         $deliveries=Delivery::all();
@@ -21,17 +24,36 @@ class OrdersController extends Controller
         ->select('orders.*','restaurants.name as res_name','clients.name','clients.phone')
         ->get();
 
-        return view('orders.index',compact('orders','restaurants','clients','deliveries'));
+            if($request->restaurant_id)
+            {
+                $menus = DB::table('menus')
+                    ->join('restaurants', 'restaurants.id', '=', 'menus.restaurant_id')
+                    ->select('menus.id', 'menus.food', 'restaurants.name', 'menus.price')
+                    ->where('menus.restaurant_id', $request->restaurant_id)
+                    ->get();
+            }else
+            {
+                $menus = DB::table('menus')
+                    ->join('restaurants', 'restaurants.id', '=', 'menus.restaurant_id')
+                    ->select('menus.id', 'menus.food', 'restaurants.name', 'menus.price')
+                    ->get();
+            }
+
+        return view('orders.index',compact('orders','restaurants','clients','deliveries','menus'));
     }
 
     public function create(Request $request){
-        $menus=new Order;
-        $menus->restaurant_id=$request->restaurant_id;
-        $menus->client_id=$request->client_id;
-        $menus->delivery_id=$request->delivery_id;
-        $menus->price=$request->price;
-        $menus->save();
-        return back()->with('message','تم اضافة قائمة الطلب بنجاح');
+        $input = $request->all();
+        $input['food'] = json_encode($input['selctIds']);
+        Order::create($input);
+        // $menus=new Order;
+        // $menus->restaurant=$request->restaurant;
+        // $menus->name=$request->name;
+        // $menus->phone=$request->phone;
+        // $menus->address=$request->address;
+        // $menus->food=$request->selctIds;
+        // $menus->save();
+        return back()->with('message','تم اضافة الطلب بنجاح');
     }
 
     public function update(Request $request){
