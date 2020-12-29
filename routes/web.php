@@ -12,6 +12,10 @@
 */
 
 Route::get('/','WelcomeController@index')->name('welcome');
+Route::post('/','WelcomeController@login')->name('login');
+Route::get('/register','WelcomeController@reg')->name('reg');
+Route::post('/register','WelcomeController@register')->name('register');
+Route::post('/logout','WelcomeController@logout')->name('logout');
 
 //Monthly subscription routes
 Route::get('/monthly_sub/{id}','Monthly_subController@index');

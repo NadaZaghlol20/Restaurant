@@ -37,10 +37,26 @@
             <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
                 <i class="fas fa-fw fa-bars"></i>
             </button>
+
             {{-- <h4 class="c-header-brand d-lg-none" href="#">اطلب واتمنى</h4> --}}
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
             </button>
+            <li>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ session('name') }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/logout">
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
         </header>
         <div class="c-body">
             <main class="c-main">
