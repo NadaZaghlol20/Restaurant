@@ -17,112 +17,103 @@
         </div>
 
         <div class="card-body">
-            <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-User">
-                    <thead>
-                        <tr>
-                            <th>الرقم التعريفى</th>
-                            <th>إسم العميل</th>
-                            {{-- <th>رقم العميل</th> --}}
-                            <th>إسم المطعم</th>
-                            {{-- <th>السعر</th> --}}
-                            <th>تعديل</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($orders as $order)
-                            <tr data-entry-id="{{ $order->id }}">
-                                <td height="5">{{ $order->id ?? '' }}</td>
-                                <td>{{ $order->name ?? '' }}</td>
-                                {{-- <td>{{ $order->phone ?? '' }}</td> --}}
-                                <td>{{ $order->res_name ?? '' }}</td>
-                                {{-- <td>{{ $order->price ?? '' }}</td> --}}
-                                <td>
-                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($order) }}" style="color:white;cursor: pointer">
-                                        تعديل
-                                    </a>
-
-                                    <form action="/orders_delete/{{ $order->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        @method('delete') @csrf
-                                        <input type="submit" class="btn btn-xs btn-danger" value="حذف">
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="card-footer">
-           <a href="/menus"><button class="btn btn-danger">
-               <i class="fas fa-arrow-right"></i>&nbsp لإستكمال الطلب إذهب للتالى</button></a>
-        </div>
-
-        <!--Create Modal Menu-->
-        <div class="modal fade" id="order" tabindex="-1" role="dialog" aria-labelledby="orderModal" aria-hidden="true">
-            <div class="modal-dialog mt-5" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="orderModal"> تسجيل بيانات قائمة الطعام
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <form method="POST" action="/orders_create" enctype="multipart/form-data">
+                @csrf
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">معلومات العميــل</a>
+                      <a class="nav-item nav-link" id="nav-menu-tab" data-toggle="tab" href="#nav-menu"  role="tab"  aria-controls="nav-menu" aria-selected="false">الطعــام</a>
                     </div>
-                    <div class="modal-body">
-                        <form method="POST" action="/orders_create">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="client_id" class="col-md-4">إسم العميل :</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="client_id" id="client_id">
-                                        @foreach ($clients as $client)
-                                            <option value="{{$client->id}}">{{$client->name}} &nbsp; {{ $client->phone }}</option>
-                                        @endforeach
-                                    </select>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="container-fluid">
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                        <div class="form-group row">
+                                            <label for="name" class="col-md-4">إسم العميل :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="name" id="name">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="phone" class="col-md-4">رقم العميل :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="phone" id="phone">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="address" class="col-md-4">عنوان العميل :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="address" id="address">
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="restaurant_id" id="restaurant_id">
-                                        @foreach ($restaurants as $res)
-                                        <option value="{{$res->id}}">{{$res->name}}</option>
-                                        @endforeach
-                                    </select>
+                    <div class="tab-pane fade" id="nav-menu" role="tabpanel" aria-labelledby="nav-menu-tab">
+                        <div class="container-fluid">
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 for="restaurant" class="col-md-4">إختار مطعم :</h5>
+                                            <div class="col-md-3">
+                                                <select class="form-control" name="restaurant" id="filters">
+                                                    <option value="-1" selected>إختــر مطعم</option>
+                                                    @foreach ($restaurants as $res)
+                                                    <option value="{{$res->id}}">{{$res->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="Table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>&nbsp;</th>
+                                                            <th>الرقم التعريفى</th>
+                                                            <th>إسم المطعم</th>
+                                                            <th>إسم الطعام</th>
+                                                            <th>السعر</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($menus as $key => $menu)
+                                                            <tr data-entry-id="{{ $menu->id }}">
+                                                            <td><input type="checkbox" name="selctIds[]" id="select" value="{{$menu->id}}"></td>
+                                                                <td>{{ $menu->id ?? '' }}</td>
+                                                                <td>{{ $menu->name ?? '' }}</td>
+                                                                <td>{{ $menu->food ?? '' }}</td>
+                                                                <td>{{ $menu->price ?? '' }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            {{-- <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="delivery_id" id="delivery_id">
-                                        @foreach ($deliveries as $delivery)
-                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
-
-                            {{-- <div class="form-group row">
-                                <label for="price" class="col-md-4">السعر :</label>
-                                <div class="col-md-8">
-                                    <input id="price" type="number" class="form-control" name="price" required>
-                                </div>
-                            </div> --}}
-
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">تسجيل</button>
-                            </div>
-                        </form>
+                        <div class="form-group pt-2 ml-3 float-right">
+                            <button class="btn btn-success" type="submit">تسجيــل</button>
+                            {{-- <button class="btn btn-danger"  type="button">Cancel</button> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
         </div>
 
-        <!--Edit Modal Menu-->
+        {{-- <!--Edit Modal Menu-->
         <div class="modal fade" id="Editorder" tabindex="-1" role="dialog" aria-labelledby="orderModal" aria-hidden="true">
             <div class="modal-dialog mt-5" role="document">
                 <div class="modal-content">
@@ -137,45 +128,25 @@
                         <form method="POST" action="{{ route('update_order') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="client_id" class="col-md-4">إسم العميل :</label>
+                                <label for="name" class="col-md-4">إسم العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="client_id" id="client_id1">
-                                        @foreach ($clients as $client)
-                                        <option value="{{$client->id}}">{{$client->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="name" id="name1">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
+                                <label for="phone" class="col-md-4">رقم العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="restaurant_id" id="restaurant_id1">
-                                        @foreach ($restaurants as $res)
-                                        <option value="{{$res->id}}">{{$res->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="phone" id="phone1">
                                 </div>
                             </div>
 
-                            {{-- <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
+                            <div class="form-group row">
+                                <label for="address" class="col-md-4">عنوان العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="delivery_id" id="delivery_id1">
-                                        @foreach ($deliveries as $delivery)
-                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="address" id="address1">
                                 </div>
-                            </div> --}}
-
-                            {{-- <div class="form-group row">
-                                <label for="price" class="col-md-4">السعر :</label>
-                                <div class="col-md-8">
-                                    <input id="price1" type="number" class="form-control" name="price" required>
-                                </div>
-                            </div> --}}
-
+                            </div>
 
                             <div class="modal-footer">
                                 <input type="hidden" name="id" id="id" value="">
@@ -185,7 +156,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
@@ -232,17 +203,38 @@
                 .columns.adjust();
         });
 
+        $(document).ready(function() {
+            $('#select').selectpicker();
+        });
+
         $('.edit-operations-button').click(function(e){
             e.preventDefault()
             let operation = JSON.parse($(this).attr('data-recObject'))
-            console.log(operation)
-            $('#client_id1').val(operation.client_id)
-            $('#restaurant_id1').val(operation.restaurant_id)
-            // $('#delivery_id1').val(operation.delivery_id)
-            // $('#price1').val(operation.price)
+            $('#name1').val(operation.name)
+            $('#phone1').val(operation.phone)
+            $('#address1').val(operation.address)
             $('#id').val(operation.id)
             $('#Editorder').modal('show');
         });
-    })
+
+        fetch_data();
+
+        function fetch_data(restaurant_id = ''){
+            $('#Table').table({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url:"/orders",
+                data: {restaurant_id:restaurant_id}
+            },
+            });
+        }
+
+        $('#filters').change(function(){
+        var restaurant_id = $('#filters').val();
+        $('#Table').table().destroy();
+        fetch_data(restaurant_id);
+    });
+})
 </script>
 @endsection
