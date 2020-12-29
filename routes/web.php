@@ -60,7 +60,7 @@ Route::get('/menus','MenusController@index')->name('menus_all');
 Route::get('/get_menus/{id}','MenusController@get_menus');
 Route::post('/menus_create','MenusController@create');
 Route::post('/menus_update','MenusController@update')->name('update_menu');
-Route::delete('/menus_delete/{id}','MenusController@destroy');
+Route::get('/menus_delete/{id}','MenusController@destroy');
 Route::delete('menus/destroy', 'MenusController@massDestroy')->name('menus.massDestroy');
 
 //Orders Routes

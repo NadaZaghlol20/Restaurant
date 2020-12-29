@@ -30,7 +30,7 @@ class MenusController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function($row){
                 $btn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm">View</a>
-                <a href="/menus_delete/" class="btn btn-danger btn-sm">delete</a>';
+                <a href="/menus_delete/'.$row->id.'" class="btn btn-danger btn-sm">delete</a>';
                 return $btn;
          })
         ->rawColumns(['action'])

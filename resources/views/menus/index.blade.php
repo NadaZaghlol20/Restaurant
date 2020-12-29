@@ -26,7 +26,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped datatable datatable-User" id="FilterData">
+                <table class="table table-bordered table-striped datatable" id="FilterData">
                     <thead>
                         <tr>
                             <th>الرقم التعريفى</th>
