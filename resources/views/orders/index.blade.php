@@ -23,9 +23,8 @@
                         <tr>
                             <th>الرقم التعريفى</th>
                             <th>إسم العميل</th>
-                            {{-- <th>رقم العميل</th> --}}
-                            <th>إسم المطعم</th>
-                            {{-- <th>السعر</th> --}}
+                            <th>رقم العميل</th>
+                            <th>عنوان العميل</th>
                             <th>تعديل</th>
                         </tr>
                     </thead>
@@ -33,9 +32,10 @@
                         @foreach($orders as $order)
                             <tr data-entry-id="{{ $order->id }}">
                                 <td height="5">{{ $order->id ?? '' }}</td>
-                                <td>{{ $order->name ?? '' }}</td>
+                                <td>{{ $order->client_id ?? '' }}</td>
                                 {{-- <td>{{ $order->phone ?? '' }}</td> --}}
-                                <td>{{ $order->res_name ?? '' }}</td>
+                                <td>{{ $order->phone ?? '' }}</td>
+                                <td>{{ $order->address ?? '' }}</td>
                                 {{-- <td>{{ $order->price ?? '' }}</td> --}}
                                 <td>
                                     <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($order) }}" style="color:white;cursor: pointer">
@@ -74,44 +74,25 @@
                         <form method="POST" action="/orders_create">
                             @csrf
                             <div class="form-group row">
-                                <label for="client_id" class="col-md-4">إسم العميل :</label>
+                                <label for="name" class="col-md-4">إسم العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="client_id" id="client_id">
-                                        @foreach ($clients as $client)
-                                            <option value="{{$client->id}}">{{$client->name}} &nbsp; {{ $client->phone }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="name" id="name">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
+                                <label for="phone" class="col-md-4">رقم العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="restaurant_id" id="restaurant_id">
-                                        @foreach ($restaurants as $res)
-                                        <option value="{{$res->id}}">{{$res->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="phone" id="phone">
                                 </div>
                             </div>
 
-                            {{-- <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
+                            <div class="form-group row">
+                                <label for="address" class="col-md-4">عنوان العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="delivery_id" id="delivery_id">
-                                        @foreach ($deliveries as $delivery)
-                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="address" id="address">
                                 </div>
-                            </div> --}}
-
-                            {{-- <div class="form-group row">
-                                <label for="price" class="col-md-4">السعر :</label>
-                                <div class="col-md-8">
-                                    <input id="price" type="number" class="form-control" name="price" required>
-                                </div>
-                            </div> --}}
+                            </div>
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">تسجيل</button>
@@ -137,17 +118,27 @@
                         <form method="POST" action="{{ route('update_order') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="client_id" class="col-md-4">إسم العميل :</label>
+                                <label for="name" class="col-md-4">إسم العميل :</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="client_id" id="client_id1">
-                                        @foreach ($clients as $client)
-                                        <option value="{{$client->id}}">{{$client->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="name" id="name1">
                                 </div>
                             </div>
 
                             <div class="form-group row">
+                                <label for="phone" class="col-md-4">رقم العميل :</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="phone" id="phone1">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="address" class="col-md-4">عنوان العميل :</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="address" id="address1">
+                                </div>
+                            </div>
+
+                            {{--  <div class="form-group row">
                                 <label for="restaurant_id" class="col-md-4">إسم المطعم :</label>
                                 <div class="col-md-8">
                                     <select class="form-control" name="restaurant_id" id="restaurant_id1">
@@ -156,26 +147,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-
-                            {{-- <div class="form-group row">
-                                <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="delivery_id" id="delivery_id1">
-                                        @foreach ($deliveries as $delivery)
-                                            <option value="{{ $delivery->id }}">{{$delivery->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
-
-                            {{-- <div class="form-group row">
-                                <label for="price" class="col-md-4">السعر :</label>
-                                <div class="col-md-8">
-                                    <input id="price1" type="number" class="form-control" name="price" required>
-                                </div>
-                            </div> --}}
-
+                            </div>  --}}
 
                             <div class="modal-footer">
                                 <input type="hidden" name="id" id="id" value="">
@@ -235,11 +207,9 @@
         $('.edit-operations-button').click(function(e){
             e.preventDefault()
             let operation = JSON.parse($(this).attr('data-recObject'))
-            console.log(operation)
-            $('#client_id1').val(operation.client_id)
-            $('#restaurant_id1').val(operation.restaurant_id)
-            // $('#delivery_id1').val(operation.delivery_id)
-            // $('#price1').val(operation.price)
+            $('#name1').val(operation.name)
+            $('#phone1').val(operation.phone)
+            $('#address1').val(operation.address)
             $('#id').val(operation.id)
             $('#Editorder').modal('show');
         });

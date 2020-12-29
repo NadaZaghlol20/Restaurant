@@ -42,14 +42,14 @@
             {{-- <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
             </button> --}}
-            <ul class="list-unstyled" style="margin-right:1000px">
+            <ul class="list-unstyled mt-2" style="margin-right:1120px">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-fw fa-2x fa-user-circle mt-2" style="color:black;"></i>&nbsp; <span style="color: black;">{{ session('name') }}</span>
+                        <span style="color: black;">{{ session('name') }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/logout">
-                            Logout
+                            تسجيل الخروج
                         </a>
                     </div>
                 </li>

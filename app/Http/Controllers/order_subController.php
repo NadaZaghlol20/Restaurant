@@ -19,15 +19,10 @@ class order_subController extends Controller
     }
 
     public function create(Request $request){
-        $order_sub=new Order_sub;
-        $order_sub->name=$request->name;
-        $order_sub->address=$request->address;
-        $order_sub->phone=$request->phone;
-        $order_sub->date=$request->start_date;
-        $order_sub->notes=$request->notes;
-        $order_sub->sub_id=$request->sub_id;
-        $order_sub->save();
-        return back()->with('message','تم اضافة طلب الاشتراك بنجاح');
+        session()->put('client_name',$request->client_name);
+        session()->put('phone',$request->phone);
+        session()->put('address',$request->address);
+        return redirect('/menus');
     }
 
     public function update(Request $request){
