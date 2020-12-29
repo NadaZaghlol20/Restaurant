@@ -13,41 +13,29 @@
 
     <div class="card">
         <div class="card-header">
-           قائمة قوائم الطعام
+            <h5 for="restaurant_id" class="col-md-4">إختار مطعم :</h5>
+            <div class="col-md-3">
+                <select class="form-control" name="restaurant_id" id="filters">
+                    <option value="-1" selected>إختــر مطعم</option>
+                    @foreach ($restaurants as $res)
+                    <option value="{{$res->id}}">{{$res->name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-User">
+                <table class="table table-bordered table-striped datatable datatable-User" id="FilterData">
                     <thead>
                         <tr>
                             <th>الرقم التعريفى</th>
                             <th>إسم المطعم</th>
-                            <th>نوع الطعام</th>
+                            <th>إسم الطعام</th>
                             <th>السعر</th>
                             <th>تعديل</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach($menus as $menu)
-                            <tr data-entry-id="{{ $menu->id }}">
-                                <td>{{ $menu->id ?? '' }}</td>
-                                <td>{{ $menu->name ?? '' }}</td>
-                                <td>{{ $menu->food ?? '' }}</td>
-                                <td>{{ $menu->price ?? '' }}</td>
-                                <td>
-                                    <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($menu) }}" style="color:white;cursor: pointer">
-                                        تعديل
-                                    </a>
-
-                                    <form action="/menus_delete/{{ $menu->id }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        @method('delete') @csrf
-                                        <input type="submit" class="btn btn-xs btn-danger" value="حذف">
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -92,7 +80,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" onclick="print()">تسجيل</button>
+                                <button type="submit" class="btn btn-primary">تسجيل</button>
                             </div>
                         </form>
                     </div>
@@ -204,6 +192,48 @@
             $('#id').val(operation.id)
             $('#Editmenu').modal('show');
         });
-    })
+
+        fetch_data();
+
+        function fetch_data(restaurant_id = ''){
+            $('#FilterData').DataTable({
+            processing: true,
+            // serverSide: true,
+            ajax: {
+                url:"/menus",
+                data: {restaurant_id:restaurant_id}
+            },
+            columns:[
+                {
+                data: 'id',
+                },
+                {
+                data: 'name',
+                name: 'name',
+                orderable: false
+                },
+                {
+                data: 'food',
+                name: 'food',
+                },
+                {
+                data:'price',
+                name:'price'
+                },
+                {
+                data:'action',
+                name:'action'
+                },
+            ]
+            });
+        }
+
+        $('#filters').change(function(){
+        var restaurant_id = $('#filters').val();
+        $('#FilterData').DataTable().destroy();
+        fetch_data(restaurant_id);
+    });
+
+})
 </script>
 @endsection

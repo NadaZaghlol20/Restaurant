@@ -17,6 +17,8 @@ class CreateMonthlySubsTable extends Migration
             $table->id();
             $table->string('subscription');
             $table->integer('price');
+            $table->integer('period');
+            $table->string('supplier_name');
             $table->timestamps();
         });
     }

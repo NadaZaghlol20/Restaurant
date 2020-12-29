@@ -22,8 +22,7 @@
                     <thead>
                         <tr>
                             <th>الرقم التعريفى</th>
-                            <th>إسم الدليفرى</th>
-                            <th>رقم الدليفرى</th>
+                            <th>عنوان الدليفرى</th>
                             <th>سعر التوصيل</th>
                             <th>تعديل</th>
                         </tr>
@@ -32,8 +31,7 @@
                         @foreach($deliveries as $delivery)
                             <tr data-entry-id="{{ $delivery->id }}">
                                 <td>{{ $delivery->id ?? '' }}</td>
-                                <td>{{ $delivery->name ?? '' }}</td>
-                                <td>{{ $delivery->phone ?? '' }}</td>
+                                <td>{{ $delivery->address ?? '' }}</td>
                                 <td>{{ $delivery->delivery_price ?? '' }}</td>
                                 <td>
                                     <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($delivery) }}" style="color:white;cursor: pointer">
@@ -65,16 +63,9 @@
                         <form method="POST" action="/deliveries_create">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم الدليفرى :</label>
+                                <label for="address" class="col-md-4">عنوان الدليفرى :</label>
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم الدليفرى :</label>
-                                <div class="col-md-8">
-                                    <input id="phone" type="text" class="form-control" name="phone" required autocomplete="phone">
+                                    <input id="address" type="text" class="form-control" name="address" required autocomplete="address">
                                 </div>
                             </div>
 
@@ -108,16 +99,9 @@
                         <form method="POST" action="{{ route('update_delivery') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم الدليفرى :</label>
+                                <label for="address" class="col-md-4">عنوان الدليفرى :</label>
                                 <div class="col-md-8">
-                                    <input id="name1" type="text" class="form-control" name="name" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم الدليفرى :</label>
-                                <div class="col-md-8">
-                                    <input id="phone1" type="text" class="form-control" name="phone" required>
+                                    <input id="address1" type="text" class="form-control" name="address" required>
                                 </div>
                             </div>
 
@@ -183,7 +167,7 @@
         $('.edit-operations-button').click(function(e){
             e.preventDefault()
             let operation = JSON.parse($(this).attr('data-recObject'))
-            $('#name1').val(operation.name)
+            $('#address1').val(operation.address)
             $('#phone1').val(operation.phone)
             $('#delivery_price1').val(operation.delivery_price)
             $('#id').val(operation.id)

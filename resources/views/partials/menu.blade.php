@@ -17,6 +17,18 @@
         </li>
 
         <li class="c-sidebar-nav-item">
+            <a href="/sales" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المبيعات
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="/expenses" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المصروفات و المشتريات
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
             <a href="/restaurants" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>المطاعم
             </a>
@@ -40,22 +52,10 @@
             </a>
         </li>
 
-        <li class="c-sidebar-nav-dropdown">
-            <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                <i class="fa-fw fas fa-tachometer-alt c-sidebar-nav-icon"></i>الاشتراكات
+        <li class="c-sidebar-nav-item">
+            <a href="/order_sub" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt"></i>الاشتراكات
             </a>
-            <ul class="c-sidebar-nav-dropdown-items">
-                <li class="c-sidebar-nav-item">
-                    <a href="/monthly_sub" class="c-sidebar-nav-link {{ url()->current()==url('monthly_sub') ? 'active' : '' }}">
-                        <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>الاشتراكات الشهرية
-                    </a>
-                </li>
-                <li class="c-sidebar-nav-item">
-                    <a href="/food_sub" class="c-sidebar-nav-link {{ url()->current()==url('food_sub')  ? 'active' : '' }}">
-                        <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon"></i>اشتراكات العيش
-                    </a>
-                </li>
-            </ul>
         </li>
     </ul>
 </div>

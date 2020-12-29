@@ -23,10 +23,9 @@
                         <tr>
                             <th>الرقم التعريفى</th>
                             <th>إسم العميل</th>
-                            <th>رقم العميل</th>
+                            {{-- <th>رقم العميل</th> --}}
                             <th>إسم المطعم</th>
-                            <th>إسم الدليفرى</th>
-                            <th>السعر</th>
+                            {{-- <th>السعر</th> --}}
                             <th>تعديل</th>
                         </tr>
                     </thead>
@@ -35,10 +34,9 @@
                             <tr data-entry-id="{{ $order->id }}">
                                 <td height="5">{{ $order->id ?? '' }}</td>
                                 <td>{{ $order->name ?? '' }}</td>
-                                <td>{{ $order->phone ?? '' }}</td>
+                                {{-- <td>{{ $order->phone ?? '' }}</td> --}}
                                 <td>{{ $order->res_name ?? '' }}</td>
-                                <td>{{ $order->delivery_name ?? '' }}</td>
-                                <td>{{ $order->price ?? '' }}</td>
+                                {{-- <td>{{ $order->price ?? '' }}</td> --}}
                                 <td>
                                     <a href="#" class="btn btn-xs btn-info edit-operations-button" data-recObject="{{ json_encode($order) }}" style="color:white;cursor: pointer">
                                         تعديل
@@ -54,6 +52,11 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="card-footer">
+           <a href="/menus"><button class="btn btn-danger">
+               <i class="fas fa-arrow-right"></i>&nbsp لإستكمال الطلب إذهب للتالى</button></a>
         </div>
 
         <!--Create Modal Menu-->
@@ -92,7 +95,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
                                 <div class="col-md-8">
                                     <select class="form-control" name="delivery_id" id="delivery_id">
@@ -101,17 +104,17 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="price" class="col-md-4">السعر :</label>
                                 <div class="col-md-8">
                                     <input id="price" type="number" class="form-control" name="price" required>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" onClick="print()">تسجيل</button>
+                                <button type="submit" class="btn btn-primary">تسجيل</button>
                             </div>
                         </form>
                     </div>
@@ -155,7 +158,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="restaurant_id" class="col-md-4">إسم الدليفرى :</label>
                                 <div class="col-md-8">
                                     <select class="form-control" name="delivery_id" id="delivery_id1">
@@ -164,14 +167,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="price" class="col-md-4">السعر :</label>
                                 <div class="col-md-8">
                                     <input id="price1" type="number" class="form-control" name="price" required>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="modal-footer">
@@ -235,8 +238,8 @@
             console.log(operation)
             $('#client_id1').val(operation.client_id)
             $('#restaurant_id1').val(operation.restaurant_id)
-            $('#delivery_id1').val(operation.delivery_id)
-            $('#price1').val(operation.price)
+            // $('#delivery_id1').val(operation.delivery_id)
+            // $('#price1').val(operation.price)
             $('#id').val(operation.id)
             $('#Editorder').modal('show');
         });

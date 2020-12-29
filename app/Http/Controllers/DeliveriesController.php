@@ -14,8 +14,7 @@ class DeliveriesController extends Controller
 
     public function create(Request $request){
         $delivery=new Delivery;
-        $delivery->name=$request->name;
-        $delivery->phone=$request->phone;
+        $delivery->address=$request->address;
         $delivery->delivery_price=$request->delivery_price;
         $delivery->save();
         return back()->with('message','تم اضافة الدليفرى بنجاح');
@@ -23,8 +22,7 @@ class DeliveriesController extends Controller
 
     public function update(Request $request){
         $delivery=Delivery::find($request->id);
-        $delivery->name=$request->name;
-        $delivery->phone=$request->phone;
+        $delivery->address=$request->address;
         $delivery->delivery_price=$request->delivery_price;
         $delivery->save();
         return back()->with('message','تم تعديل بيانات الدليفرى بنجاح');

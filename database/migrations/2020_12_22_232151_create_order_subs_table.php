@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFoodSubsTable extends Migration
+class CreateOrderSubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateFoodSubsTable extends Migration
      */
     public function up()
     {
-        Schema::create('food_subs', function (Blueprint $table) {
+        Schema::create('order_subs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sub_id');
+            $table->string('name');
             $table->string('address');
-            $table->integer('bread_num');
-            $table->integer('price');
+            $table->string('phone');
+            $table->date('date');
+            $table->string('notes');
+            $table->foreign('sub_id')->references('id')->on('monthly_subs')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateFoodSubsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food_subs');
+        Schema::dropIfExists('order_subs');
     }
 }

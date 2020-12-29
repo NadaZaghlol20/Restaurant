@@ -14,7 +14,7 @@
 Route::get('/','WelcomeController@index')->name('welcome');
 
 //Monthly subscription routes
-Route::get('/monthly_sub','Monthly_subController@index');
+Route::get('/monthly_sub/{id}','Monthly_subController@index');
 Route::post('/monthly_sub_create','Monthly_subController@create');
 Route::post('/monthly_sub_update','Monthly_subController@update')->name('update_monthly_sub');
 Route::delete('/monthly_sub_delete/{id}','Monthly_subController@destroy');
@@ -22,11 +22,11 @@ Route::delete('monthly_sub/destroy', 'Monthly_subController@massDestroy')->name(
 
 
 //Food subscription routes
-Route::get('/food_sub','Food_subController@index');
-Route::post('/food_sub_create','Food_subController@create');
-Route::post('/food_sub_update','Food_subController@update')->name('update_food_sub');
-Route::delete('/food_sub_delete/{id}','Food_subController@destroy');
-Route::delete('food_sub/destroy', 'Food_subController@massDestroy')->name('food_subs.massDestroy');
+Route::get('/order_sub','order_subController@index');
+Route::post('/order_sub_create','order_subController@create');
+Route::post('/order_sub_update','order_subController@update')->name('update_order_sub');
+Route::delete('/order_sub_delete/{id}','order_subController@destroy');
+Route::delete('order_sub/destroy', 'order_subController@massDestroy')->name('order_subs.massDestroy');
 
 
 //Clients routes
@@ -52,7 +52,8 @@ Route::delete('/restaurants_delete/{id}','RestaurantsController@destroy');
 Route::delete('restaurants/destroy', 'RestaurantsController@massDestroy')->name('restaurants.massDestroy');
 
 //Menus Routes
-Route::get('/menus','MenusController@index');
+Route::get('/menus','MenusController@index')->name('menus_all');
+Route::get('/get_menus/{id}','MenusController@get_menus');
 Route::post('/menus_create','MenusController@create');
 Route::post('/menus_update','MenusController@update')->name('update_menu');
 Route::delete('/menus_delete/{id}','MenusController@destroy');
@@ -64,3 +65,17 @@ Route::post('/orders_create','OrdersController@create');
 Route::post('/orders_update','OrdersController@update')->name('update_order');
 Route::delete('/orders_delete/{id}','OrdersController@destroy');
 Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
+
+//sales Routes
+Route::get('/sales','SalesController@index');
+Route::post('/sales_create','SalesController@create');
+Route::post('/sales_update','SalesController@update')->name('update_sale');
+Route::delete('/sales_delete/{id}','SalesController@destroy');
+Route::delete('sales/destroy', 'SalesController@massDestroy')->name('sales.massDestroy');
+
+//expenses Routes
+Route::get('/expenses','ExpensesController@index');
+Route::post('/expenses_create','ExpensesController@create');
+Route::post('/expenses_update','ExpensesController@update')->name('update_expense');
+Route::delete('/expenses_delete/{id}','ExpensesController@destroy');
+Route::delete('expenses/destroy', 'ExpensesController@massDestroy')->name('expenses.massDestroy');
