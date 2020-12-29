@@ -15,7 +15,7 @@ Route::get('/','WelcomeController@index')->name('welcome');
 Route::post('/','WelcomeController@login')->name('login');
 Route::get('/register','WelcomeController@reg')->name('reg');
 Route::post('/register','WelcomeController@register')->name('register');
-Route::post('/logout','WelcomeController@logout')->name('logout');
+Route::get('/logout','WelcomeController@logout')->name('logout');
 
 //Monthly subscription routes
 Route::get('/monthly_sub/{id}','Monthly_subController@index');
@@ -25,7 +25,7 @@ Route::delete('/monthly_sub_delete/{id}','Monthly_subController@destroy');
 Route::delete('monthly_sub/destroy', 'Monthly_subController@massDestroy')->name('monthly_subs.massDestroy');
 
 
-//Food subscription routes
+//Order subscription routes
 Route::get('/order_sub','order_subController@index');
 Route::post('/order_sub_create','order_subController@create');
 Route::post('/order_sub_update','order_subController@update')->name('update_order_sub');

@@ -5,9 +5,6 @@
             <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#expenses">
                 اضافة المصروفات و المشتريات
             </a>
-            <button class="btn btn-info" style="color:white;cursor: pointer" onClick="print()">
-                طباعة
-            </button>
         </div>
     </div>
 

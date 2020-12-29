@@ -39,24 +39,21 @@
             </button>
 
             {{-- <h4 class="c-header-brand d-lg-none" href="#">اطلب واتمنى</h4> --}}
-            <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+            {{-- <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
-            </button>
-            <li>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ session('name') }} <span class="caret"></span>
+            </button> --}}
+            <ul class="list-unstyled" style="margin-right:1000px">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-fw fa-2x fa-user-circle mt-2" style="color:black;"></i>&nbsp; <span style="color: black;">{{ session('name') }}</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/logout">
+                            Logout
                         </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/logout">
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </li>
+                    </div>
+                </li>
+            </ul>
         </header>
         <div class="c-body">
             <main class="c-main">

@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    {{-- <link rel="stylesheet" href="assets/css/style.ccss"> --}}
+    <link rel="stylesheet" href="{{asset('login/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('login/css/ionicons.min.css')}}">
     <style>
         .login-dark {
             height:750px;
@@ -94,11 +93,12 @@
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div><a href="/register">Register </a>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+            <div class="form-group text-center"><a href="/register">Register</a></div>
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('login/js/jquery.min.js')}}"></script>
+    <script src="{{asset('login/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>
