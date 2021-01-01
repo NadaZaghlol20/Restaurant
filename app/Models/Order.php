@@ -20,7 +20,7 @@ class Order extends Model
         return $this->belongsTo('App\Models\Delivery');
     }
 
-    protected $casts = [
-        'food' => 'array',
-    ];
+    // protected $casts = [
+    //     'food' => 'array',
+    // ];
 }

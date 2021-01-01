@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div style="margin-bottom: 10px;" class="row">
+    {{-- <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" style="color:white;cursor: pointer" data-toggle="modal" data-target="#order">
                 اضافة طلب طعام
@@ -9,11 +9,11 @@
                 طباعة
             </button>
         </div>
-    </div>
+    </div> --}}
 
     <div class="card">
         <div class="card-header">
-           قائمة الطلبات
+            إنشـــاء طلـــب
         </div>
 
         <div class="card-body">
@@ -60,7 +60,7 @@
                             <div class="row mt-5">
                                 <div class="col-12">
                                     <div class="card">
-                                        <div class="card-header">
+                                        {{-- <div class="card-header">
                                             <h5 for="restaurant" class="col-md-4">إختار مطعم :</h5>
                                             <div class="col-md-3">
                                                 <select class="form-control" name="restaurant" id="filters">
@@ -70,7 +70,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -104,59 +104,13 @@
                         </div>
 
                         <div class="form-group pt-2 ml-3 float-right">
-                            <button class="btn btn-success" type="submit">تسجيــل</button>
-                            {{-- <button class="btn btn-danger"  type="button">Cancel</button> --}}
+                            <button class="btn btn-success" type="submit">إنشـــاء</button>
                         </div>
                     </div>
                 </div>
             </form>
 
         </div>
-
-        {{-- <!--Edit Modal Menu-->
-        <div class="modal fade" id="Editorder" tabindex="-1" role="dialog" aria-labelledby="orderModal" aria-hidden="true">
-            <div class="modal-dialog mt-5" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="orderModal"> تعديل بيانات قائمة الطعام
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('update_order') }}">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4">إسم العميل :</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="name" id="name1">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="phone" class="col-md-4">رقم العميل :</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="phone" id="phone1">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="address" class="col-md-4">عنوان العميل :</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="address" id="address1">
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <input type="hidden" name="id" id="id" value="">
-                                <button type="submit" class="btn btn-primary">تعديل</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 @endsection
 
@@ -223,10 +177,10 @@
             $('#Table').table({
             processing: true,
             serverSide: true,
-            ajax: {
-                url:"/orders",
-                data: {restaurant_id:restaurant_id}
-            },
+                ajax: {
+                    url:"/orders",
+                    data: {restaurant_id:restaurant_id}
+                },
             });
         }
 

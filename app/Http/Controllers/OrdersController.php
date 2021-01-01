@@ -43,16 +43,17 @@ class OrdersController extends Controller
     }
 
     public function create(Request $request){
+        $clients=new Client;
+        $clients->name=$request->name;
+        $clients->phone=$request->phone;
+        $clients->address=$request->address;
+        $clients->save();
+
         $input = $request->all();
+        $client_id=$clients->id;
         $input['food'] = json_encode($input['selctIds']);
+        $input['client_id'] = $client_id;
         Order::create($input);
-        // $menus=new Order;
-        // $menus->restaurant=$request->restaurant;
-        // $menus->name=$request->name;
-        // $menus->phone=$request->phone;
-        // $menus->address=$request->address;
-        // $menus->food=$request->selctIds;
-        // $menus->save();
         return back()->with('message','تم اضافة الطلب بنجاح');
     }
 

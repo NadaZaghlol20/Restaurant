@@ -14,7 +14,7 @@
     <link href="{{ asset('css/jquery_datatable.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap_datatable.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/buttons_datatable.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/select.dataTables.min.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('css/select.dataTables.min.css') }}" rel="stylesheet" /> --}}
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/datetimepicker.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/coreUI_css.min.css') }}" rel="stylesheet" />
@@ -42,14 +42,14 @@
             {{-- <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
             </button> --}}
-            <ul class="list-unstyled mt-2" style="margin-right:1120px">
+            <ul class="list-unstyled mt-2" style="margin-right:900px">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span style="color: black;">{{ session('name') }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/logout">
-                            تسجيل الخروج
+                            تسجيل الخــروج
                         </a>
                     </div>
                 </li>

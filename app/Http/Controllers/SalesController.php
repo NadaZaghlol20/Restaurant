@@ -10,13 +10,29 @@ use DB;
 class SalesController extends Controller
 {
     public function index(){
-        $count = Order::where('client_id','=','1')->count();
+
         $sales=DB::table('clients')
-        ->leftJoin('orders','orders.client_id','clients.id')
-        // ->where()
-        ->select('clients.name as client_name','orders.id as id','clients.phone as client_phone','clients.address as client_address')
-        // ->orderBy('clients.id')
-        ->get();
-        return view('sales',compact('sales','count'));
+        ->Join('orders','orders.client_id','clients.id')
+        ->select([
+            DB::raw('count(orders.client_id) as quantity'),
+            'clients.created_at as final_price',
+            'clients.id',
+            'clients.name',
+            'clients.phone',
+            'clients.address'
+        ])
+        ->groupBy(['orders.client_id','clients.id','clients.name','clients.phone','clients.address','clients.created_at'])
+        ->get()
+        ->toArray();
+
+        foreach($sales as $sale){
+            $price=0;
+            $orders=Order::where('client_id',$sale->id)->get();
+            foreach($orders as $ord)
+                $price+=(int)$ord->price;
+            $sale->created_at=$price;
+        }
+
+        return view('sales',compact('sales'));
     }
 }
